@@ -1,6 +1,60 @@
 ;; -*- mode: emacs-lisp -*-
-;; This file is loaded by Spacemacs at startup.
-;; It must be stored in your home directory.
+
+;;; introduction
+;;
+;;
+;;
+
+;;; spacemacs-layers
+
+;;;; layers
+
+(setq dotspacemacs/layers/core
+      '(better-defaults
+        git
+        github
+        gnus
+        org
+        ranger
+        syntax-checking
+        (auto-completion :variables
+                         auto-completion-return-key-behavior 'complete)
+        (ivy :variables
+             ivy-extra-directories nil)
+        (shell :variables
+               shell-default-shell 'eshell
+               shell-default-position 'bottom
+               shell-default-height 30)
+        version-control)
+
+      dotspacemacs/layers/lang
+      '(emacs-lisp
+        haskell
+        python
+        latex))
+
+;;;; additional packages
+
+(setq dotspacemacs/additional/packages
+      '(;;org
+        org-gcal
+        org-vcard
+
+        ;; misc
+        virtualenvwrapper
+        dash
+        (dash-functional
+         :location (recipe :fetcher github
+                           :repo "magnars/dash.el"))
+
+        ;; visual
+        all-the-icons-ivy
+        pretty-mode
+        spaceline-all-the-icons
+        ;; (prettify-utils
+        ;;  :location (recipe :fetcher github
+        ;;                    :repo "Ilazki/prettify-utils"))
+        ))
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
@@ -30,31 +84,13 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     ivy
-     ;; auto-completion
-     ;; better-defaults
-     emacs-lisp
-     ;; git
-     ;; markdown
-     ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
-     ;; syntax-checking
-     ;; version-control
-     )
+   (append dotspacemacs/layers/core
+           dotspacemacs/layers/lang)
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages dotspacemacs/additional/packages
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -126,17 +162,21 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(;;
+                         sanityinc-solarized-dark
+                         sanityinc-solarized-light
+                         subatomic
+                         spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+                               ;; :size 13
                                :weight normal
                                :width normal
-                               :powerline-scale 1.1)
+                               :powerline-scale 1.0)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -300,6 +340,9 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+
+  (setq custom-file "./elisp/.custom-settings.el")
+
   )
 
 (defun dotspacemacs/user-config ()
@@ -309,7 +352,15 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  )
 
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
+  (use-package spaceline-all-the-icons
+    :after spaceline
+    :config (progn
+              (setq spaceline-responsive nil)
+
+              ;; init
+              (spaceline-all-the-icons-theme)
+
+              ;; toggles
+              ))
+  )
