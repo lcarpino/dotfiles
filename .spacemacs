@@ -48,6 +48,8 @@
                            :repo "magnars/dash.el"))
 
         ;; visual
+        all-the-icons
+        all-the-icons-dired
         all-the-icons-ivy
         pretty-mode
         spaceline-all-the-icons
@@ -353,6 +355,10 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  ;; add all-the-icons to dired mode and fix slow loading
+  (setq inhibit-compacting-font-caches t)
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+
   (use-package spaceline-all-the-icons
     :after spaceline
     :config (progn
@@ -363,4 +369,34 @@ you should place your code here."
 
               ;; toggles
               ))
+
+  (module/misc)
   )
+
+;;; Misc
+
+(defun module/misc ()
+  (module/misc/neotree)
+  (module/misc/projectile)
+  )
+
+;;;; Neotree
+(defun module/misc/neotree ()
+  "Neotree configuration."
+
+  (setq neo-theme 'icons
+        neo-window-width 28)
+
+  (setq neo-hidden-regexp-list '("\\.pyc$" "~$" "^#.*#$" "\\.elc$"
+                                 ;; hide python bytecode
+                                 "__pycache__"))
+
+  (evil-global-set-key 'normal (kbd "M-f") 'winum-select-window-0)
+  (evil-global-set-key 'normal (kbd "M-p") 'neotree-find-project-root))
+
+;;;; Projectile
+
+(defun module/misc/projectile ()
+  "Project config, respect .projectile files."
+
+  (setq projectile-indexing-method 'native))
