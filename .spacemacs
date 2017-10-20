@@ -25,7 +25,10 @@
                shell-default-shell 'eshell
                shell-default-position 'bottom
                shell-default-height 30)
-        version-control)
+        (version-control :variables
+                         version-control-global-margin t
+                         version-control-diff-tool 'git-gutter+)
+        )
 
       dotspacemacs/layers/lang
       '(emacs-lisp
