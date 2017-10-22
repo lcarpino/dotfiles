@@ -362,6 +362,19 @@ you should place your code here."
   (setq inhibit-compacting-font-caches t)
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
+  (module/display)
+  (module/misc)
+  )
+
+;;; display
+
+(defun module/display ()
+  (module/display/modeline)
+  )
+
+;;;; modeline w/ spaceline & all-the-icons
+(defun module/display/modeline ()
+  "Modeline configuration."
   (use-package spaceline-all-the-icons
     :after spaceline
     :config (progn
@@ -372,8 +385,6 @@ you should place your code here."
 
               ;; toggles
               ))
-
-  (module/misc)
   )
 
 ;;; misc
@@ -421,7 +432,7 @@ you should place your code here."
 ;;;; shell
 
 (defun module/misc/shell ()
-  "eshell configuration"
+  "eshell configuration."
   (use-package eshell
     :init
     (setq eshell-scroll-to-bottom-on-input 'all
