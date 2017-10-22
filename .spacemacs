@@ -376,14 +376,14 @@ you should place your code here."
   (module/misc)
   )
 
-;;; Misc
+;;; misc
 
 (defun module/misc ()
   (module/misc/neotree)
   (module/misc/projectile)
   )
 
-;;;; Neotree
+;;;; neotree
 (defun module/misc/neotree ()
   "Neotree configuration."
 
@@ -397,9 +397,22 @@ you should place your code here."
   (evil-global-set-key 'normal (kbd "M-f") 'winum-select-window-0)
   (evil-global-set-key 'normal (kbd "M-p") 'neotree-find-project-root))
 
-;;;; Projectile
+;;;; projectile
 
 (defun module/misc/projectile ()
-  "Project config, respect .projectile files."
+  "Project configuration, respect .projectile files."
+  ;; cache on remote host so make snappier
+  (setq projectile-file-exists-remote-cache-expire (* 10 60))
+  (setq projectile-indexing-method 'native)
+  )
 
-  (setq projectile-indexing-method 'native))
+;;;; tramp
+
+(defun module/misc/tramp ()
+  "Tramp configuration."
+  (tramp-set-completion-function "ssh"
+                                 '((tramp-parse-sconfig "/etc/ssh_config")
+                                   (tramp-parse-sconfig "~/.ssh/config")))
+  (setq tramp-default-method "ssh")
+  (eval-after-load 'tramp '(setenv "SHELL" "/bin/sh"))
+  )
