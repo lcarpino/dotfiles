@@ -381,6 +381,7 @@ you should place your code here."
 (defun module/misc ()
   (module/misc/neotree)
   (module/misc/projectile)
+  (module/misc/shell)
   )
 
 ;;;; neotree
@@ -414,5 +415,20 @@ you should place your code here."
                                  '((tramp-parse-sconfig "/etc/ssh_config")
                                    (tramp-parse-sconfig "~/.ssh/config")))
   (setq tramp-default-method "ssh")
-  (eval-after-load 'tramp '(setenv "SHELL" "/bin/sh"))
+  (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
   )
+
+;;;; shell
+
+(defun module/misc/shell ()
+  "eshell configuration"
+  (use-package eshell
+    :init
+    (setq eshell-scroll-to-bottom-on-input 'all
+          eshell-error-if-no-glob t
+          eshell-hist-ignoredups t
+          eshell-save-history-on-exit t
+          eshell-prefer-lisp-functions t
+          eshell-destroy-buffer-when-process-dies t)
+    :config
+  ))
