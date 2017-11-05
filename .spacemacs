@@ -34,7 +34,11 @@
       '(emacs-lisp
         haskell
         python
-        latex))
+        (latex :variables
+               ;; rebuild on save, can be slow
+               ;; TeX-auto-save t
+               TeX-parse-self t)
+        ))
 
 ;;;; additional packages
 
