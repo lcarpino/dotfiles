@@ -15,10 +15,20 @@
         github
         gnus
         org
+        pandoc
         ranger
-        syntax-checking
+        (syntax-checking :variables
+                         syntax-checking-enable-by-default t
+                         syntax-checking-enable-tooltips t)
+        (spell-checking :variables
+                        spell-checking-enable-by-default t
+                        spell-checking-enable-auto-dictionary nil)
         (auto-completion :variables
-                         auto-completion-return-key-behavior 'complete)
+                         auto-completion-return-key-behavior 'complete
+                         auto-completion-tab-key-behavior 'cycle
+                         auto-completion-complete-with-key-sequence nil
+                         auto-completion-complete-with-key-sequence-delay 0.1
+                         auto-completion-private-snippets-directory nil)
         (ivy :variables
              ivy-extra-directories nil)
         (shell :variables
@@ -32,6 +42,7 @@
 
       dotspacemacs/layers/lang
       '(emacs-lisp
+        clojure
         haskell
         python
         (latex :variables
@@ -429,7 +440,7 @@ you should place your code here."
   (tramp-set-completion-function "ssh"
                                  '((tramp-parse-sconfig "/etc/ssh_config")
                                    (tramp-parse-sconfig "~/.ssh/config")))
-  (setq tramp-default-method "ssh")
+  (setq tramp-default-method "scp")
   (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
   )
 
