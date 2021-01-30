@@ -15,6 +15,7 @@
         github
         gnus
         org
+        markdown
         pandoc
         ranger
         (syntax-checking :variables
@@ -40,11 +41,21 @@
                          version-control-diff-tool 'git-gutter+)
         )
 
+      dotspacemacs/layers/tools
+      '((conda :variables
+               conda-anaconda-home (expand-file-name "~/.miniconda3/")
+               conda-env-home-directory (expand-file-name "~/.miniconda3/"))
+        dap
+        lsp)
+
       dotspacemacs/layers/lang
       '(emacs-lisp
         clojure
         haskell
-        python
+        (python :variables
+                python-backend 'lsp
+                python-lsp-server 'mspyls)
+        rust
         (latex :variables
                ;; rebuild on save, can be slow
                ;; TeX-auto-save t
@@ -105,7 +116,8 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    (append dotspacemacs/layers/core
-           dotspacemacs/layers/lang)
+           dotspacemacs/layers/lang
+           dotspacemacs/layers/tools)
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
@@ -361,7 +373,7 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
-  (setq custom-file "./elisp/.custom-settings.el")
+  (setq custom-file "~/.elisp/.custom-settings.el")
 
   )
 
