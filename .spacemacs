@@ -55,6 +55,7 @@
         (python :variables
                 python-backend 'lsp
                 python-lsp-server 'mspyls)
+        yaml
         rust
         (latex :variables
                ;; rebuild on save, can be slow
