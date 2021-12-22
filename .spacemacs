@@ -51,6 +51,7 @@
       dotspacemacs/layers/lang
       '(emacs-lisp
         c-c++
+        docker
         (latex :variables
                ;; rebuild on save, can be slow
                ;; TeX-auto-save t
