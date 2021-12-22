@@ -42,26 +42,30 @@
         )
 
       dotspacemacs/layers/tools
-      '((conda :variables
-               conda-anaconda-home (expand-file-name "~/.miniconda3/")
-               conda-env-home-directory (expand-file-name "~/.miniconda3/"))
-        dap
-        lsp)
+      '(dap
+        (lsp :variables
+             lsp-lens-enable t
+             lsp-use-lsp-ui t)
+        )
 
       dotspacemacs/layers/lang
       '(emacs-lisp
-        clojure
-        haskell
-        (python :variables
-                python-backend 'lsp
-                python-lsp-server 'mspyls)
-        yaml
-        rust
+        c-c++
         (latex :variables
                ;; rebuild on save, can be slow
                ;; TeX-auto-save t
                TeX-parse-self t)
-        ))
+        (python :variables
+                python-backend 'lsp
+                python-lsp-server 'pylsp
+                python-test-runner 'pytest
+                python-formatter 'black
+                python-format-on-save t
+                python-sort-imports-on-save t
+                python-save-before-test t)
+        yaml
+        haskell
+        rust))
 
 ;;;; additional packages
 
