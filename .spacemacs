@@ -10,14 +10,13 @@
 ;;;; layers
 
 (setq dotspacemacs/layers/core
-      '(better-defaults
+      '(helm
+        better-defaults
         git
         github
-        gnus
         org
         markdown
         pandoc
-        ranger
         (syntax-checking :variables
                          syntax-checking-enable-by-default t
                          syntax-checking-enable-tooltips t)
@@ -30,11 +29,9 @@
                          auto-completion-complete-with-key-sequence nil
                          auto-completion-complete-with-key-sequence-delay 0.1
                          auto-completion-private-snippets-directory nil)
-        (ivy :variables
-             ivy-extra-directories nil)
         (shell :variables
                shell-default-shell 'eshell
-               shell-default-position 'bottom
+               shell-default-position 'bottom)
                shell-default-height 30)
         (version-control :variables
                          version-control-global-margin t
@@ -58,12 +55,13 @@
                TeX-parse-self t)
         (python :variables
                 python-backend 'lsp
-                python-lsp-server 'pylsp
+                python-lsp-server 'pyright
                 python-test-runner 'pytest
                 python-formatter 'black
                 python-format-on-save t
                 python-sort-imports-on-save t
                 python-save-before-test t)
+        json
         yaml
         haskell
         rust))
@@ -71,26 +69,11 @@
 ;;;; additional packages
 
 (setq dotspacemacs/additional/packages
-      '(;;org
-        org-gcal
-        org-vcard
-
-        ;; misc
-        virtualenvwrapper
-        dash
-        (dash-functional
-         :location (recipe :fetcher github
-                           :repo "magnars/dash.el"))
-
-        ;; visual
+      '(;; visual
         all-the-icons
         all-the-icons-dired
-        all-the-icons-ivy
         pretty-mode
         spaceline-all-the-icons
-        ;; (prettify-utils
-        ;;  :location (recipe :fetcher github
-        ;;                    :repo "Ilazki/prettify-utils"))
         ))
 
 (defun dotspacemacs/layers ()
@@ -200,12 +183,11 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(;;
+   dotspacemacs-themes '(spacemacs-dark
+                         spacemacs-light
                          sanityinc-solarized-dark
                          sanityinc-solarized-light
-                         subatomic
-                         spacemacs-dark
-                         spacemacs-light)
+                         subatomic)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
