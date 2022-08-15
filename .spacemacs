@@ -70,6 +70,7 @@
                 python-format-on-save t
                 python-sort-imports-on-save t
                 python-save-before-test t)
+        hy
         json
         yaml
         haskell
