@@ -71,7 +71,19 @@
                 python-sort-imports-on-save t
                 python-save-before-test t)
         hy
-        json
+        (html :variables
+              html-enable-lsp t
+              web-fmt-tool 'prettier)
+        (javascript :variables
+                    javascript-backend 'lsp
+                    javascript-fmt-tool 'prettier
+                    javascript-fmt-on-save t)
+        typescript
+        react
+        (json :variables
+              json-backend 'lsp
+              json-fmt-tool 'prettier
+              json-fmt-on-save t)
         yaml
         haskell
         rust))
