@@ -19,7 +19,6 @@
       '(helm
         better-defaults
         git
-        github
         org
         markdown
         pandoc
@@ -56,7 +55,10 @@
       dotspacemacs/layers/lang
       ;; language packages
       '(emacs-lisp
-        c-c++
+        (c-c++ :variables
+               c-c++-backend 'lsp-clangd)
+        (cmake :variables
+               cmake-enable-cmake-ide-support t)
         docker
         (latex :variables
                ;; rebuild on save, can be slow
@@ -84,6 +86,7 @@
               json-backend 'lsp
               json-fmt-tool 'prettier
               json-fmt-on-save t)
+        racket
         yaml
         haskell
         rust))
@@ -92,33 +95,23 @@
 
 (setq dotspacemacs/additional/packages
       '(;; visual
+        pretty-mode
         all-the-icons
         all-the-icons-dired
-        pretty-mode
-        spaceline-all-the-icons
-        ))
+        spaceline-all-the-icons))
 
 
 ;;;; display
 
 (defun module/display ()
-  (module/display/modeline)
-  )
+  (module/display/modeline))
 
 ;;;; modeline w/ spaceline and all-the-icons
 (defun module/display/modeline ()
   "Modeline configuration."
   (use-package spaceline-all-the-icons
     :after spaceline
-    :config (progn
-              (setq spaceline-responsive nil)
-
-              ;; init
-              (spaceline-all-the-icons-theme)
-
-              ;; toggles
-              ))
-  )
+    :config (spaceline-all-the-icons-theme)))
 
 ;;;; misc
 
@@ -148,7 +141,7 @@
   "Project configuration, respect .projectile files."
   ;; cache on remote host so make snappier
   (setq projectile-file-exists-remote-cache-expire (* 10 60))
-  (setq projectile-indexing-method 'native)
+  (setq projectile-indexing-method 'hybrid)
   )
 
 ;;;; tramp
@@ -401,7 +394,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(all-the-icons :separator wave :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
