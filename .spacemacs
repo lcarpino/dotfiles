@@ -713,6 +713,8 @@ before packages are loaded."
   (setq inhibit-compacting-font-caches t)
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
+  (setq-default fill-column 120)
+
   (module/display)
   (module/misc)
 )
