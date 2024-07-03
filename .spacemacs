@@ -42,15 +42,16 @@
                          version-control-global-margin t
                          version-control-diff-tool 'git-gutter+)
         treemacs
-        )
+        (unicode-fonts :variables
+                       unicode-fonts-enable-ligatures t
+                       unicode-fonts-ligature-mode '(prog-mode)))
 
       dotspacemacs/layers/tools
       ;; packages that provide functionality to other layers
       '(dap
         (lsp :variables
              lsp-lens-enable t
-             lsp-use-lsp-ui t)
-        )
+             lsp-use-lsp-ui t))
 
       dotspacemacs/layers/lang
       ;; language packages
