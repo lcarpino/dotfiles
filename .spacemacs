@@ -58,6 +58,8 @@
       '(emacs-lisp
         (c-c++ :variables
                c-c++-backend 'lsp-clangd)
+        (clojure :variables
+                 clojure-backend 'lsp)
         (cmake :variables
                cmake-enable-cmake-ide-support t)
         docker
