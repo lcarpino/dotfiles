@@ -51,7 +51,9 @@
       '(dap
         (lsp :variables
              lsp-lens-enable t
-             lsp-use-lsp-ui t))
+             lsp-use-lsp-ui t)
+        (llm-client :variables
+                    llm-client-enable-gptel t))
 
       dotspacemacs/layers/lang
       ;; language packages
@@ -722,9 +724,15 @@ before packages are loaded."
 
   (setq-default fill-column 120)
 
+  (setq
+   gptel-model "gemini-1.5-flash"
+   gptel-backend (gptel-make-gemini "Gemini"
+                   :key #'gptel-api-key
+                   :models '("gemini-1.5-pro" "gemini-1.0-pro" "gemini-1.5-flash")
+                   :stream t))
+
   (module/display)
-  (module/misc)
-)
+  (module/misc))
 
 
 ;; Do not write anything past this comment. This is where Emacs will
