@@ -19,7 +19,9 @@
       '(helm
         better-defaults
         git
-        org
+        (org :variables
+             org-enable-github-support t
+             org-babel-clojure-backend 'cider)
         markdown
         pandoc
         (syntax-checking :variables
