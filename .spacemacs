@@ -61,7 +61,9 @@
       ;; language packages
       '(emacs-lisp
         (c-c++ :variables
-               c-c++-backend 'lsp-clangd)
+               c-c++-backend 'lsp-clangd
+               c-c++-enable-organize-includes-on-save t
+               c-c++-enable-clang-format-on-save t)
         (clojure :variables
                  clojure-backend 'lsp)
         (cmake :variables
