@@ -55,7 +55,8 @@
              lsp-lens-enable t
              lsp-use-lsp-ui t)
         (llm-client :variables
-                    llm-client-enable-gptel t))
+                    llm-client-enable-gptel t
+                    llm-client-enable-ellama t))
 
       dotspacemacs/layers/lang
       ;; language packages
@@ -728,6 +729,12 @@ before packages are loaded."
 
   (setq-default fill-column 120)
 
+  ;; We need to manually enable the non-free parts of the llm package
+  (use-package llm
+    :init
+    (setq llm-warn-on-nonfree nil)
+    (require 'llm-gemini))
+
   (setq
    gptel-model "gemini-2.0-flash"
    gptel-default-mode 'org-mode
@@ -735,6 +742,8 @@ before packages are loaded."
                    :key #'gptel-api-key
                    :models '("gemini-1.5-pro" "gemini-2.5-pro-exp-03-25" "gemini-1.5-flash" "gemini-2.0-flash")
                    :stream t))
+
+  (setq ellama-provider (make-llm-gemini :key (plist-get (car (auth-source-search :host "generativelanguage.googleapis.com")) :secret)))
 
   (module/display)
   (module/misc))
