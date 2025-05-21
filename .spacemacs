@@ -65,10 +65,12 @@
                c-c++-backend 'lsp-clangd
                c-c++-enable-organize-includes-on-save t
                c-c++-enable-clang-format-on-save t)
-        (clojure :variables
-                 clojure-backend 'lsp)
         (cmake :variables
                cmake-enable-cmake-ide-support t)
+        (clojure :variables
+                 clojure-backend 'lsp)
+        (java :variables
+              java-backend 'lsp)
         docker
         (latex :variables
                ;; rebuild on save, can be slow
@@ -90,12 +92,12 @@
                     javascript-backend 'lsp
                     javascript-fmt-tool 'prettier
                     javascript-fmt-on-save t)
-        typescript
-        react
         (json :variables
               json-backend 'lsp
               json-fmt-tool 'prettier
               json-fmt-on-save t)
+        typescript
+        react
         racket
         yaml
         haskell
