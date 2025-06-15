@@ -737,12 +737,15 @@ before packages are loaded."
     (setq llm-warn-on-nonfree nil)
     (require 'llm-gemini))
 
+  (use-package gptel-integrations
+    :after gptel)
+
   (setq
-   gptel-model "gemini-2.0-flash"
+   gptel-model 'gemini-2.5-flash-preview-05-20
    gptel-default-mode 'org-mode
    gptel-backend (gptel-make-gemini "Gemini"
                    :key #'gptel-api-key
-                   :models '("gemini-1.5-pro" "gemini-2.5-pro-exp-03-25" "gemini-1.5-flash" "gemini-2.0-flash")
+                   :models '("gemini-2.5-pro-exp-03-25" "gemini-2.0-flash" "gemini-2.5-flash-preview-05-20")
                    :stream t))
 
   (setq ellama-provider (make-llm-gemini :key (plist-get (car (auth-source-search :host "generativelanguage.googleapis.com")) :secret)))
