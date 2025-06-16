@@ -702,8 +702,7 @@ It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq custom-file "~/.elisp/.custom-settings.el")
   (set-language-environment "UTF-8")
-  (set-default-coding-systems 'utf-8)
-  (require 'bazel))
+  (set-default-coding-systems 'utf-8))
 
 
 (defun dotspacemacs/user-load ()
@@ -725,6 +724,8 @@ before packages are loaded."
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
   (setq-default fill-column 120)
+
+  (require 'bazel)
 
   ;; We need to manually enable the non-free parts of the llm package
   (use-package llm
