@@ -130,8 +130,7 @@
 (defun module/misc ()
   (module/misc/neotree)
   (module/misc/projectile)
-  (module/misc/shell)
-  )
+  (module/misc/shell))
 
 ;;;; neotree
 (defun module/misc/neotree ()
@@ -153,8 +152,7 @@
   "Project configuration, respect .projectile files."
   ;; cache on remote host so make snappier
   (setq projectile-file-exists-remote-cache-expire (* 10 60))
-  (setq projectile-indexing-method 'hybrid)
-  )
+  (setq projectile-indexing-method 'hybrid))
 
 ;;;; tramp
 
@@ -164,8 +162,7 @@
                                  '((tramp-parse-sconfig "/etc/ssh_config")
                                    (tramp-parse-sconfig "~/.ssh/config")))
   (setq tramp-default-method "scp")
-  (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
-  )
+  (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash")))
 
 ;;;; shell
 
@@ -179,8 +176,7 @@
           eshell-save-history-on-exit t
           eshell-prefer-lisp-functions t
           eshell-destroy-buffer-when-process-dies t)
-    :config
-  ))
+    :config))
 
 
 ;; end custom content
@@ -696,8 +692,7 @@ This function defines the environment variables for your Emacs session. By
 default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
-  (spacemacs/load-spacemacs-env)
-)
+  (spacemacs/load-spacemacs-env))
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
