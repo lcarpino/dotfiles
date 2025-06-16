@@ -230,7 +230,7 @@ This function should only modify configuration layer settings."
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
-   (append dotspacemacs/additional/packages)
+   (append dotspacemacs/additional/packages '(bazel))
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -708,7 +708,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq custom-file "~/.elisp/.custom-settings.el")
   (set-language-environment "UTF-8")
   (set-default-coding-systems 'utf-8)
-)
+  (require 'bazel))
 
 
 (defun dotspacemacs/user-load ()
