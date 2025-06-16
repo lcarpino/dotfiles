@@ -77,6 +77,7 @@
                ;; TeX-auto-save t
                TeX-parse-self t)
         (python :variables
+                python-virtualenv-management 'pet
                 python-backend 'lsp
                 python-lsp-server 'pyright
                 python-test-runner 'pytest
