@@ -111,7 +111,11 @@
         pretty-mode
         all-the-icons
         all-the-icons-dired
-        spaceline-all-the-icons))
+        spaceline-all-the-icons
+        ;; build
+        bazel
+        ;; ai
+        aidermacs))
 
 
 ;;;; display
@@ -227,7 +231,7 @@ This function should only modify configuration layer settings."
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
-   (append dotspacemacs/additional/packages '(bazel))
+   (append dotspacemacs/additional/packages)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -746,6 +750,15 @@ before packages are loaded."
                    :stream t))
 
   (setq ellama-provider (make-llm-gemini :key (plist-get (car (auth-source-search :host "generativelanguage.googleapis.com")) :secret)))
+
+  ;; aidermacs
+  (require 'aidermacs)
+  (setq aidermacs-backend 'vterm)
+  (setq aidermacs-default-chat-mode 'code)
+  (setq aidermacs-default-model "gemini/gemini-2.5-flash")
+  (setq aidermacs-weak-model "gemini/gemini-2.5-flash")
+  (add-to-list 'aidermacs-extra-args "--verbose")
+  (spacemacs/set-leader-keys "aa" 'aidermacs-transient-menu)
 
   (module/display)
   (module/misc))
