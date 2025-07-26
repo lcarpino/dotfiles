@@ -1,0 +1,4 @@
+model: gemini/gemini-2.5-flash
+weak-model: gemini/gemini-2.5-flash-lite
+auto-commits: false
+yes-always: false

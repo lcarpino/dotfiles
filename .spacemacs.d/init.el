@@ -115,7 +115,8 @@
         ;; build
         bazel
         ;; ai
-        aidermacs))
+        (aidermacs :variables
+                   aidermacs-backend 'vterm)))
 
 
 ;;;; display
@@ -752,12 +753,6 @@ before packages are loaded."
   (setq ellama-provider (make-llm-gemini :key (plist-get (car (auth-source-search :host "generativelanguage.googleapis.com")) :secret)))
 
   ;; aidermacs
-  (require 'aidermacs)
-  (setq aidermacs-backend 'vterm)
-  (setq aidermacs-default-chat-mode 'code)
-  (setq aidermacs-default-model "gemini/gemini-2.5-flash")
-  (setq aidermacs-weak-model "gemini/gemini-2.5-flash")
-  (add-to-list 'aidermacs-extra-args "--verbose")
   (spacemacs/set-leader-keys "aa" 'aidermacs-transient-menu)
 
   (module/display)
