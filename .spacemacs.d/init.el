@@ -42,7 +42,7 @@
                shell-default-height 30)
         (version-control :variables
                          version-control-global-margin t
-                         version-control-diff-tool 'git-gutter+)
+                         version-control-diff-tool 'git-gutter)
         treemacs
         (unicode-fonts :variables
                        unicode-fonts-enable-ligatures t
@@ -81,10 +81,11 @@
                 python-backend 'lsp
                 python-lsp-server 'pyright
                 python-test-runner 'pytest
-                python-formatter 'black
+                python-formatter 'ruff
                 python-format-on-save t
                 python-sort-imports-on-save t
-                python-save-before-test t)
+                python-save-before-test t
+                python-enable-tools '(uv))
         hy
         (html :variables
               html-enable-lsp t
@@ -619,9 +620,9 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-persistent-server nil
 
    ;; List of search tool executable names. Spacemacs uses the first installed
-   ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
+   ;; tool of the list. Supported tools are `rg', `ag', `ack' and `grep'.
    ;; (default '("rg" "ag" "pt" "ack" "grep"))
-   dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
+   dotspacemacs-search-tools '("rg" "ag" "ack" "grep")
 
    ;; Format specification for setting the frame title.
    ;; %a - the `abbreviated-file-name', or `buffer-name'
